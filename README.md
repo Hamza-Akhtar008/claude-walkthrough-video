@@ -11,6 +11,8 @@ narration -> local voice -> WAV per scene + caption timings
 real app  -> Playwright scenes -> clips + markers   -> walkthrough.mp4 + .srt
 ```
 
+[Privacy policy](https://github.com/Hamza-Akhtar008/claude-walkthrough-video/blob/main/PRIVACY.md) · [Licence](https://github.com/Hamza-Akhtar008/claude-walkthrough-video/blob/main/LICENSE)
+
 ## Install
 
 As a plugin (recommended):
@@ -49,13 +51,7 @@ Node 20+, Playwright, FFmpeg (with `xfade`, `zoompan`, `loudnorm`, `libx264`), P
 
 ## Privacy
 
-This plugin has no service behind it. It sends nothing to its author or to any third party, and it has no analytics.
-
-- **What it does on your machine:** it opens your app in a browser, records the pages, and writes the results (frames, clips, voice files, captions, the finished video) into a folder in your project. Whatever is on screen while it records ends up in those files, so use a demo account and cover anything private.
-- **Saved login:** if you choose to save a sign-in session so scenes can reuse it, it is stored in a local file in your project. The scripts never read, ask for or store passwords. Keep that file out of git (the included `.gitignore` lines do).
-- **What it downloads:** the Playwright browser, the Python packages, and the Kokoro voice model files (from GitHub). These are downloads only; none of your data is uploaded.
-- **The voice runs locally:** no text or audio is sent to a cloud speech service.
-- **Not intended for people under 18.** It is a developer tool.
+This plugin has no service behind it and sends nothing to its author or to any third party. Everything it creates stays in your project folder. See the full [Privacy policy](https://github.com/Hamza-Akhtar008/claude-walkthrough-video/blob/main/PRIVACY.md).
 
 ## Licence
 

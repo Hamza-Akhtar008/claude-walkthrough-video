@@ -1,3 +1,5 @@
+<p align="center"><img src=".claude-plugin/icon.png" alt="claude-walkthrough-video icon" width="140"></p>
+
 # claude-walkthrough-video
 
 A Claude Code skill that makes a narrated walkthrough video of your web app, from a script.

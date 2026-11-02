@@ -4,12 +4,6 @@ import fs from 'node:fs'
 import { execFileSync } from 'node:child_process'
 export const WEB = process.env.WEB_URL ?? 'http://localhost:3000', W = 1920, H = 1080
 const ROOT = new URL('./clips/', import.meta.url).pathname
-/** Sign a role in however your app does it. Return a token, or null to skip. Adapt this to your auth. */
-export async function token(email) {
-  if (!process.env.LOGIN_URL) return null
-  const r = await fetch(process.env.LOGIN_URL, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ email, password: process.env.DEMO_PASSWORD }) })
-  return (await r.json()).accessToken
-}
 let browser
 export async function launch() { browser = await chromium.launch(); return browser }
 export async function close() { await browser?.close() }
@@ -29,13 +23,12 @@ export class Clip {
    * opts.cover    { left, top, width, height, label }: paint over something private (an account name) on every page
    * opts.popups   button names to click away on each page load, for example ['Cancel', 'Got it']
    */
-  async open(email, path, opts = {}) {
+  async open(path, opts = {}) {
     fs.rmSync(this.dir, { recursive: true, force: true }); fs.mkdirSync(this.dir + 'f', { recursive: true })
     this.cover = opts.cover || null; this.popups = opts.popups || []
     const view = { width: W, height: H }
     if (opts.profile) this.ctx = await chromium.launchPersistentContext(opts.profile, { viewport: view, deviceScaleFactor: 1, args: ['--disable-blink-features=AutomationControlled'] })
     else this.ctx = await browser.newContext({ viewport: view, deviceScaleFactor: 1, ...(opts.state ? { storageState: opts.state } : {}) })
-    if (email) { const t = await token(email); await this.ctx.addInitScript(([k, v]) => { try { sessionStorage.setItem(k, v) } catch {} }, [process.env.TOKEN_KEY || 'token', t]) }
     if (opts.init) await this.ctx.addInitScript(opts.init)
     this.page = this.ctx.pages()[0] ?? await this.ctx.newPage(); this.page.setDefaultTimeout(30000)
     if (path) await this.goto(path, opts.ready)

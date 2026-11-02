@@ -1,7 +1,7 @@
 {
   "name": "walkthrough-video",
   "description": "Make a narrated walkthrough or demo video of a web app: Playwright drives the real app, a local voice reads the script, FFmpeg adds captions and slides. Outputs a 1080p MP4 and an .srt.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Hamza Akhtar"
   },

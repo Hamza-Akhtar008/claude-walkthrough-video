@@ -11,7 +11,7 @@ const LOGIN = { state: new URL('./.login.json', import.meta.url).pathname } // c
 
 // scene-1: a public page, no login.
 async function intro() {
-  const c = await new Clip('scene-1').open(null, '/')                      // clip name, user (unused), start page
+  const c = await new Clip('scene-1').open('/')                               // clip name; start page (relative to WEB_URL)
   await c.start(); await c.hold(2500)                                      // start() begins capturing frames
   c.mark('shown')                                                          // markers let assemble.py line the picture up with the voice
   await c.stop()                                                           // writes clips/scene-1/clip.mp4 and meta.json
@@ -20,7 +20,7 @@ async function intro() {
 // scene-2: type into a form and wait for a slow reply. think() pauses capture, so the video never shows the wait.
 async function signup() {
   const email = `demo${Math.floor(Math.random() * 1000)}@example.com`
-  const c = await new Clip('scene-2').open(null, '/signup')
+  const c = await new Clip('scene-2').open('/signup')
   await c.start(); await c.hold(800)
   await c.type('#email', email)                                            // gliding cursor, click ripple, typing
   await c.type('#password', 'correct horse battery')
@@ -34,7 +34,7 @@ async function signup() {
 // scene-3: a page behind a login (uses the saved login), opened on a record you created earlier.
 async function firstNote() {
   const { email } = load()
-  const c = await new Clip('scene-3').open(null, '/notes', LOGIN)
+  const c = await new Clip('scene-3').open('/notes', LOGIN)
   await c.start(); await c.hold(1500)
   await c.type('.note-editor', `Welcome, ${email}!`, 36); c.mark('typed'); await c.hold(2500)
   await c.stop()

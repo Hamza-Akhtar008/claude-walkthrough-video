@@ -42,7 +42,7 @@ Stop at each gate and wait for the user. Wording and structure are cheap to chan
 
 ## Rules that matter
 
-- **Privacy.** Use a demo or test account. Blur or cover anything showing real people, emails, phone numbers, account names, keys, IDs, tokens or billing (`opts.cover`, `opts.init`). Never type or show passwords or 2FA codes on camera. Keep `.env`, saved logins and browser profiles out of git.
+- **Privacy.** Use a demo or test account. Blur or cover anything showing real people, emails, phone numbers, account names, keys, IDs, tokens or billing (`opts.cover`, `opts.init`). Never handle passwords: when a scene needs a login, have the user sign in by hand once in a visible browser (`templates/auth.template.mjs`) and reuse the saved session. Never type or show passwords or 2FA codes on camera. Keep `.env`, saved logins and browser profiles out of git.
 - **Do not act on real accounts.** Never click anything that sends, publishes, schedules or deletes on live accounts. Hover over the button and say what it does.
 - **No invented features.** Describe only what the code and the running app do.
 - **Voice and microphone audio cannot be captured by the browser.** Show the interface and say what happens.

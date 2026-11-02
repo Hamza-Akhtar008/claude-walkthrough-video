@@ -81,7 +81,7 @@ Copy `templates/scenes.template.mjs` and replace the scenes with your own. Each 
 ```js
 import { launch, close, Clip } from './rec.mjs'
 await launch()
-const c = await new Clip('checkout').open('shopper@example.com', '/cart')   // clip name, user, start page
+const c = await new Clip('checkout').open('/cart')   // clip name, start page
 await c.start()                                  // begin capturing frames
 await c.hold(600)
 await c.type('#email', 'sam@example.com')        // gliding cursor, ripples, typing
@@ -95,7 +95,7 @@ await close()
 ```
 
 Helpers on `Clip`: `click`, `type`, `moveTo`, `hold(ms)`, `zoom(target, scale, ms)`, `mark(name)`, `think(waitFn)`, `pause()` and `resume()`.
-Set `WEB_URL` for your app. For login, set `LOGIN_URL`, `DEMO_PASSWORD` and `TOKEN_KEY` (or edit `token()` in `rec.mjs` to match your auth).
+Set `WEB_URL` for your app. For a page behind a login, save the session once by signing in by hand (see `templates/auth.template.mjs`) and pass it as `opts.state`; the scripts never read or store passwords.
 
 Record at 1920 by 1080 with a clean state: realistic data, no test names, no dates you do not want shown, no keys in view.
 
@@ -157,7 +157,7 @@ Playwright (Apache-2.0), Kokoro-82M (Apache-2.0), kokoro-onnx (MIT). FFmpeg is L
 ## Clip.open options
 
 ```js
-// Clip.open(email, path, opts)   -- every option is optional
+// Clip.open(path, opts)   -- every option is optional
 //   opts.state    storage-state file: a saved login for your own app (templates/auth.template.mjs)
 //   opts.profile  persistent browser profile: keeps a login to a third-party site (for example a CRM with 2FA)
 //   opts.init     a function run before every page load (set local storage, blur something private)

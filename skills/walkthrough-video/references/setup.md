@@ -14,23 +14,16 @@ macOS and Linux work. On Windows use WSL.
 
 ## The voice (once, outside the repo)
 
-```bash
-python3.11 -m venv ~/video-tools/.venv && source ~/video-tools/.venv/bin/activate
-pip install kokoro-onnx soundfile
-mkdir -p ~/video-tools/kokoro && cd ~/video-tools/kokoro
-curl -L -O https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx
-curl -L -O https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin
-export KOKORO_DIR=~/video-tools/kokoro
-```
+Make a Python 3.11 virtual environment in `~/video-tools/.venv` and install two packages into it: `kokoro-onnx` and `soundfile`.
 
-Run `speak.py` from the folder that holds `chunks.txt`, with the virtual environment active and `KOKORO_DIR` set. Change the voice or speed with `VOICE` and `SPEED` (defaults `af_heart` and `0.95`).
+Then download the two model files (about 350 MB together) into `~/video-tools/kokoro/`:
 
-If speech fails with `Error processing file ... espeakng_loader/phontab: No such file`, link the data next to the library:
+- [kokoro-v1.0.onnx](https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx)
+- [voices-v1.0.bin](https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin)
 
-```bash
-D=$(python -c "import espeakng_loader,os;print(os.path.dirname(espeakng_loader.__file__))")
-cd $D && for f in espeak-ng-data/*; do [ -e "$(basename $f)" ] || ln -s "$f" "$(basename $f)"; done
-```
+Run `speak.py` from the folder that holds `chunks.txt`, with that virtual environment active and the environment variable `KOKORO_DIR` set to `~/video-tools/kokoro`. Change the voice or speed with `VOICE` and `SPEED` (defaults `af_heart` and `0.95`).
+
+If speech fails with `Error processing file ... espeakng_loader/phontab: No such file`, the espeak data folder is not next to the library. Link each item inside the package's `espeak-ng-data/` folder into the package folder itself (the package is `espeakng_loader`; find its folder with `os.path.dirname(espeakng_loader.__file__)`).
 
 ## Environment
 

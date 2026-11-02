@@ -37,24 +37,7 @@ macOS and Linux work. On Windows use WSL.
 
 ## Setup
 
-```bash
-npm install playwright dotenv && npx playwright install chromium
-
-# Voice (once)
-python3 -m venv .venv && source .venv/bin/activate
-pip install kokoro-onnx soundfile
-mkdir kokoro && cd kokoro
-curl -L -O https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx
-curl -L -O https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin
-cd ..
-export KOKORO_DIR=$PWD/kokoro
-```
-
-If speech fails with `Error processing file ... espeakng_loader/phontab: No such file`, link the data next to the library:
-```bash
-D=$(python -c "import espeakng_loader,os;print(os.path.dirname(espeakng_loader.__file__))")
-cd $D && for f in espeak-ng-data/*; do [ -e "$(basename $f)" ] || ln -s "$f" "$(basename $f)"; done
-```
+See `setup.md` in this folder for the tools, the voice model and the environment variables.
 
 ## The workflow
 

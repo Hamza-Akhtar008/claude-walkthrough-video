@@ -1,0 +1,20 @@
+{
+  "name": "walkthrough-video",
+  "description": "Make a narrated walkthrough or demo video of a web app: Playwright drives the real app, a local voice reads the script, FFmpeg adds captions and slides. Outputs a 1080p MP4 and an .srt.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Hamza Akhtar"
+  },
+  "license": "MIT",
+  "keywords": [
+    "video",
+    "demo",
+    "walkthrough",
+    "playwright",
+    "voice-over",
+    "captions",
+    "ffmpeg"
+  ],
+  "homepage": "https://github.com/Hamza-Akhtar008/claude-walkthrough-video",
+  "repository": "https://github.com/Hamza-Akhtar008/claude-walkthrough-video"
+}

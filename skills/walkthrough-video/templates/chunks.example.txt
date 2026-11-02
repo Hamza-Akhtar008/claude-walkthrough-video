@@ -1,0 +1,8 @@
+1|This is Acme Notes, a small app for teams.
+1|Here is how a new user gets started.
+2|The sign-up form asks for just two things:
+2|a work email, and a password.
+2|When they submit, the app shows a clear confirmation.
+3|Inside, the first note is already waiting.
+3|Everything they type is saved as they go.
+4|That is the whole flow, from sign-up to first note.

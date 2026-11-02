@@ -1,0 +1,14 @@
+{
+  "name": "claude-walkthrough-video",
+  "owner": {
+    "name": "Hamza Akhtar"
+  },
+  "plugins": [
+    {
+      "name": "walkthrough-video",
+      "source": "./",
+      "description": "Narrated walkthrough videos of a web app, from a script: real-app recording, local voice-over, captions, slides."
+    }
+  ],
+  "description": "Skills for making narrated walkthrough and demo videos of web apps."
+}

@@ -27,7 +27,7 @@ export class Clip {
     fs.rmSync(this.dir, { recursive: true, force: true }); fs.mkdirSync(this.dir + 'f', { recursive: true })
     this.cover = opts.cover || null; this.popups = opts.popups || []
     const view = { width: W, height: H }
-    if (opts.profile) this.ctx = await chromium.launchPersistentContext(opts.profile, { viewport: view, deviceScaleFactor: 1, args: ['--disable-blink-features=AutomationControlled'] })
+    if (opts.profile) this.ctx = await chromium.launchPersistentContext(opts.profile, { viewport: view, deviceScaleFactor: 1 })
     else this.ctx = await browser.newContext({ viewport: view, deviceScaleFactor: 1, ...(opts.state ? { storageState: opts.state } : {}) })
     if (opts.init) await this.ctx.addInitScript(opts.init)
     this.page = this.ctx.pages()[0] ?? await this.ctx.newPage(); this.page.setDefaultTimeout(30000)

@@ -23,7 +23,7 @@ async function signup() {
   const c = await new Clip('scene-2').open('/signup')
   await c.start(); await c.hold(800)
   await c.type('#email', email)                                            // gliding cursor, click ripple, typing
-  await c.type('#password', 'correct horse battery')
+  await c.type('#password', '<demo-password>')
   await c.click(c.page.getByRole('button', { name: 'Create account' }))
   await c.think(() => c.page.getByText('Welcome').waitFor({ timeout: 60000 }))
   c.mark('confirmed'); await c.zoom(c.page.getByText('Welcome'), 1.3, 800); await c.hold(2500)
